@@ -30,6 +30,7 @@ class TestFunctional(unittest.TestCase):
             to the len of the dict of FileStorage
             EXPECATION: the lenghts must be equal
         """
+        storage.FileStorage().flush()
         TestFunctional.create_file_jsoon()
         # let's create some BaseModel instances
         b1 = bm.BaseModel()
