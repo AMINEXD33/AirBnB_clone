@@ -14,7 +14,7 @@ AirBnB_clone project
 
 ---
 
-## Description :ds:
+## Description :house:
 
 HolbertonBnB is a comprehensive web application that seamlessly integrates database storage, a back-end API, and front-end interfacing, emulating the functionalities of AirBnB.
 
@@ -31,7 +31,7 @@ HolbertonBnB utilizes the following classes:
 | **PUBLIC CLASS ATTRIBUTES** | | | `email`<br>`password`<br>`first_name`<br>`last_name`| `name` | `state_id`<br>`name` | `name` | `city_id`<br>`user_id`<br>`name`<br>`description`<br>`number_rooms`<br>`number_bathrooms`<br>`max_guest`<br>`price_by_night`<br>`latitude`<br>`longitude`<br>`amenity_ids` | `place_id`<br>`user_id`<br>`text` | 
 | **PRIVATE CLASS ATTRIBUTES** | | `file_path`<br>`objects` | | | | | | |
 
-## Storage :st:
+## Storage :baggage_claim:
 
 The above classes are handled by the abstracted storage engine defined in the 
 [FileStorage](./models/engine/file_storage.py) class.
