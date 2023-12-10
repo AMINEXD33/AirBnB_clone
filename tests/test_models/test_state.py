@@ -4,14 +4,13 @@ from models import state as st
 import unittest
 
 
-
 class TestInstance(unittest.TestCase):
-    
+
     def test_instance_is_alive(self):
         """test_instance_is_alive
             check if the instence is a user instance
         """
-        
+
         instance = st.State()
         self.assertIsInstance(instance, st.State)
         

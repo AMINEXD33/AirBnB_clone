@@ -5,6 +5,7 @@ import random
 import unittest
 from models import base_model as bm
 
+
 class TestInstance(unittest.TestCase):
 
     def test_instance_is_alive(self):
@@ -15,6 +16,7 @@ class TestInstance(unittest.TestCase):
         instance = bm.BaseModel()
         self.assertIsInstance(instance, bm.BaseModel)
 
+
 class TestInstancesEquality(unittest.TestCase):
 
     def test_not_the_same_id(self):
@@ -24,6 +26,7 @@ class TestInstancesEquality(unittest.TestCase):
         instance1 = bm.BaseModel()
         instance2 = bm.BaseModel()
         self.assertNotEqual(instance1.id, instance2.id)
+
 
 class TestInitializingWithDict(unittest.TestCase):
 
@@ -81,8 +84,8 @@ class TestInitializingWithDict(unittest.TestCase):
         instance1 = bm.BaseModel()
         instance1_dict = instance1.to_dict()
 
-        #underloaded dict
-        variant= {"as":"asdad", "asd":[123,"12424",None]}
+        # underloaded dict
+        variant = {"as": "asdad", "asd": [123, "12424", None]}
 
         # let's initialize the new object using this underloaded dict
         instance2 = bm.BaseModel(variant)
@@ -98,13 +101,13 @@ class TestInitializingWithDict(unittest.TestCase):
 
             EXPECTATION: we're expecting from the __init__ to just
                         ignore the empty dict and initialize the object
-                        using the standard logic (plz see the models/base_model.py)
+                        using the standard logic (plz see the
+                        models/base_model.py)
         """
         instance2 = bm.BaseModel(**{})
         # let's check if it initialized
         self.assertIsInstance(instance2, bm.BaseModel)
-    
+
 
 if __name__ == '__main__':
     unittest.main()
-
