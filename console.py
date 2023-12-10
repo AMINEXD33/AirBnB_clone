@@ -351,6 +351,10 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
         storage.reload()
 
+    def emptyline(self):
+        """Handles empty line."""
+        pass
+
     '''#FUNCTION ONLY FOR DEBUGGING
     def do_clear(self, args):
         """
