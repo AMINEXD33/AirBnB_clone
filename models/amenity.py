@@ -7,6 +7,7 @@ class Amenity(BaseModel):
     """Represent a Amenity.
     """
     name = ""
+
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
         self.name = Amenity.name

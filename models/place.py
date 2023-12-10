@@ -2,6 +2,7 @@
 """Defines the Place class."""
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """Represent an Place.
     Atttibutes:
@@ -13,7 +14,6 @@ class Place(BaseModel):
         max_guest (int): max number of guests at one go
         price_by_night (int):....
         latitude (float): ....
-        
     """
     city_id = ""
     user_id = ""
@@ -25,7 +25,8 @@ class Place(BaseModel):
     price_by_night = 0
     latitude = 0.0
     longitude = 0.0
-    amenity_ids = []    
+    amenity_ids = []
+
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
         self.city_id = Place.city_id
@@ -41,5 +42,3 @@ class Place(BaseModel):
         self.amenity_ids = Place.amenity_ids
 
         self.__SPinit__(**kwargs)
-
-        
