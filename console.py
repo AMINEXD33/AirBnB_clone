@@ -22,7 +22,6 @@ BaseModel = base_model.BaseModel
 User = user.User
 
 
-    
 class HBNBCommand(cmd.Cmd):
     """Defines the HolbertonBnB command interpreter."""
     prompt = "(hbnb) "
@@ -35,42 +34,44 @@ class HBNBCommand(cmd.Cmd):
             "Amenity",
             "Review"
             ]
+
     def default(self, arg):
         """default
             this function is a mapper, so it can map the old
             commands like(all, show, destroy, update) and the new
             structured commands (<classname>.all(), <classname>.count(),
             <classname>.count)
-            
+
             NOTE: it works by simply reusing the old methods for the new
             commands
         """
-        new_commands_stage1 = re.compile('^(\w+)\.(\w+)(\(["\w\d\-\s,]*\))$')
-        new_commands_stage2 = re.compile\
-            ('^(\w+)\.(all|create|count|destroy|update|show)(\(["\w\d\-\s,]*\))$')
+        new_com_stage1 = re.compile(r'^(\w+)\.(\w+)(\(["\w\d\-\s,]*\))$')
+        new_com_stage2 = re.compile(
+         r'^(\w+)\.(all|create|count|destroy|update|show)(\(["\w\d\-\s,]*\))$'
+        )
         # check if it's a new command, <classname>.something()
-        if (re.match(new_commands_stage1, arg)):
+        if (re.match(new_com_stage1, arg)):
             # check for the validity of the action all,create....
-            if not (re.match(new_commands_stage2, arg)):
-                print ("*** Unknown syntax: ",arg)
+            if not (re.match(new_com_stage2, arg)):
+                print("*** Unknown syntax: ", arg)
                 return
-            
+
             # find all in the regex
-            tmp_command = re.findall(new_commands_stage2, arg)
+            tmp_command = re.findall(new_com_stage2, arg)
 
             # validate if the class exists
             if (tmp_command[0][0] in HBNBCommand.__classes):
-                
+
                 # validate if the action is valid
-                if (re.match(new_commands_stage2, arg)):
+                if (re.match(new_com_stage2, arg)):
                     self.action_mapper(tmp_command)
                 else:
-                    print ("*** Unknown syntax: ",tmp_command[0][1])
-                    
+                    print("*** Unknown syntax: ", tmp_command[0][1])
+
             else:
                 print("** class doesn't exist **")
         else:
-            # call the old default. so our cmd, would convert to 
+            # call the old default. so our cmd, would convert to
             # old behavior when the new commads are not passed
             super().default(arg)
 
@@ -95,18 +96,18 @@ class HBNBCommand(cmd.Cmd):
             args:
                 args_list: the argument list
             """
-            trimed_str = [str(arg_list[0][0]),str(arg_list[0][1])]
+            trimed_str = [str(arg_list[0][0]), str(arg_list[0][1])]
             # get the splited args "(arg1, arg2..)"--> ["arg1","arg2"...]
             args = arg_list[0][2].strip("()").split(",")
-            
+
             trimed_agrs = ""
             # append the args to our  trimed_args
             for x in args:
-                trimed_agrs+=f"{x} "
+                trimed_agrs += f"{x} "
             return trimed_str, trimed_agrs
-        
-        list_,trimed_args = trime_class_name_action_and_args(arg_list)
-        
+
+        list_, trimed_args = trime_class_name_action_and_args(arg_list)
+
         if (list_[1] == "all"):
             # CLASSNAME all
             command = f"{list_[0]} {list_[1]}"
@@ -121,21 +122,21 @@ class HBNBCommand(cmd.Cmd):
             # reload the json objects into file storage
             file_storage.FileStorage().reload()
             # get the dict
-            reloaded_dict = file_storage.FileStorage().all()            
+            reloaded_dict = file_storage.FileStorage().all()
             count = 0
             for key in reloaded_dict.keys():
                 # split the key , Note: key = <classname>.id
                 splited_key = key.split(".")
                 if (splited_key[0] == list_[0]):
-                    count+=1
-            print (count)
+                    count += 1
+            print(count)
 
         elif (list_[1] == "destroy"):
             # class ID
             command = f"{list_[0]} {trimed_args}"
             self.do_destroy(command)
 
-        elif(list_[1] == "show"):
+        elif (list_[1] == "show"):
             # class i
             command = f"{list_[0]} {trimed_args}"
             self.do_show(command)
@@ -144,26 +145,26 @@ class HBNBCommand(cmd.Cmd):
             # class
             command = f"{list_[0]}"
             self.do_create(command)
-        
+
     def do_count(self, arg):
         """count the number of a class , if it doesn't exist it will print 0"""
         # get the list of arguments
         args_list = self.parse_args(arg)
         if (len(args_list) < 1):
-            print (0)
+            print(0)
             return
         # reload the json objects into file storage
         file_storage.FileStorage().reload()
         # get the dict
-        reloaded_dict = file_storage.FileStorage().all()            
+        reloaded_dict = file_storage.FileStorage().all()
         count = 0
         for key in reloaded_dict.keys():
             # split the key , Note: key = <classname>.id
             splited_key = key.split(".")
             if (splited_key[0] == args_list[0]):
-                count+=1
-        print (count)
-    
+                count += 1
+        print(count)
+
     def do_quit(self, arg):
         """Quit command to exit the program."""
         return True
@@ -190,7 +191,7 @@ class HBNBCommand(cmd.Cmd):
             return
         del len_  # not needed
         if (args_list[0] not in HBNBCommand.__classes):
-            print("** class doesn't exist **",args_list[0])
+            print("** class doesn't exist **", args_list[0])
             return
         # reload the json objects into file storage
         file_storage.FileStorage().reload()
@@ -221,8 +222,8 @@ class HBNBCommand(cmd.Cmd):
                     return  # both are found and deletion is a success
                 else:
                     print("** no instance found **")
-                    return 
-                    
+                    return
+
         if (instance_found is True and instance_id_found is False):
             print("** no instance found **")
             return
@@ -264,11 +265,10 @@ class HBNBCommand(cmd.Cmd):
         of args
         """
         result = shlex.split(args)
-        try :
+        try:
             return result
         except Exception:
-            print ("*** Unknown syntax: ",args)
-
+            print("*** Unknown syntax: ", args)
 
     def do_create(self, arg):
         """Usage: create <class>
@@ -280,7 +280,8 @@ class HBNBCommand(cmd.Cmd):
         if len(args_list) == 0:
             print("** class name missing **")
         elif args_list[0] not in HBNBCommand.__classes:
-            print("** class doesn't exist **")  # Fix: Correct the error message
+            # Fix: Correct the error message
+            print("** class doesn't exist **")
         else:
             print(eval(args_list[0])().id)
             storage.save()
@@ -377,6 +378,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
             storage.reload()
     '''
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
