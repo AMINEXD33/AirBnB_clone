@@ -107,7 +107,7 @@ class FileStorage:
                                                    "user_id",
                                                    "text"],
                                                   val)
-                            
+
                     # create the new object
                     self.new(obj)
         except Exception:
