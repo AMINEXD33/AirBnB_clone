@@ -14,14 +14,13 @@ AirBnB_clone project
 
 ---
 
-## Description :house:
+## Description :DS:
 
-HolbertonBnB is a complete web application, integrating database storage, 
-a back-end API, and front-end interfacing in a clone of AirBnB.
+HolbertonBnB is a comprehensive web application that seamlessly integrates database storage, a back-end API, and front-end interfacing, emulating the functionalities of AirBnB.
 
-The project currently only implements the back-end console.
+As of now, the project focuses on implementing the back-end console, providing a robust foundation for the overall application architecture.
 
-## Classes :cl:
+## Classes :CL:
 
 HolbertonBnB utilizes the following classes:
 
@@ -32,22 +31,16 @@ HolbertonBnB utilizes the following classes:
 | **PUBLIC CLASS ATTRIBUTES** | | | `email`<br>`password`<br>`first_name`<br>`last_name`| `name` | `state_id`<br>`name` | `name` | `city_id`<br>`user_id`<br>`name`<br>`description`<br>`number_rooms`<br>`number_bathrooms`<br>`max_guest`<br>`price_by_night`<br>`latitude`<br>`longitude`<br>`amenity_ids` | `place_id`<br>`user_id`<br>`text` | 
 | **PRIVATE CLASS ATTRIBUTES** | | `file_path`<br>`objects` | | | | | | |
 
-## Storage :baggage_claim:
+## Storage :ST:
 
 The above classes are handled by the abstracted storage engine defined in the 
 [FileStorage](./models/engine/file_storage.py) class.
 
-Every time the backend is initialized, HolbertonBnB instantiates an instance of 
-`FileStorage` called `storage`. The `storage` object is loaded/re-loaded from 
-any class instances stored in the JSON file `file.json`. As class instances are 
-created, updated, or deleted, the `storage` object is used to register 
-corresponding changes in the `file.json`.
+Upon initialization of the backend, HolbertonBnB creates an instance of FileStorage named 'storage.' This storage object is initialized or re-initialized based on any class instances present in the JSON file 'file.json.' As instances of classes are created, updated, or deleted, the storage object ensures that the corresponding modifications are reflected in the 'file.json' file.
 
 ## Console :computer:
 
-The console is a command line interpreter that permits management of the backend 
-of HolbertonBnB. It can be used to handle and manipulate all classes utilized by 
-the application (achieved by calls on the `storage` object defined above).
+The console serves as a command-line interpreter, enabling the administration of the backend for HolbertonBnB. It provides the capability to manage and manipulate all classes utilized by the application through interactions with the storage object, as defined earlier.
 
 ### Using the Console
 
@@ -284,5 +277,5 @@ $ python3 unittest -m tests/test_console.py
 ```
 
 ## Authors :black_nib:
-* **Michael Ndula** <[Michaelndula](https://github.com/Michaelndula)>
-
+* **Mohammed Maghraoui and
+Amine Meftahe**
